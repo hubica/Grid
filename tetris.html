@@ -1,0 +1,89 @@
+<html><head>
+	<meta charset="utf-8">
+	<title>Grid</title>
+
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		label {
+			cursor: pointer;
+		}
+	</style>
+<style type="text/css"></style></head>
+<body>
+	<canvas width="526" height="526" id="canvas"></canvas>
+
+	<div>
+		<label>
+			<input type="checkbox" id="debugging">Debug
+		</label>
+	</div>
+
+	<div id="debug-speed-container" style="display: none">
+		<label>
+			Hastighet (ms) <input type="text" id="debug-speed">
+		</label>
+	</div>
+
+	<script src="grid.js"></script>
+
+	<script>
+		(function () {
+			function markRandom() {
+				mark(Math.round(Math.random() * 20), Math.round(Math.random() * 20), '#'+Math.floor(Math.random()*16777215).toString(16));
+			}
+
+			for (var i = 0; i < 50; i++) {
+				markRandom();
+			}
+		})();
+	</script>
+
+	<script>
+		var x = 0;
+		var y = 0;
+	
+
+
+
+      	function mover(x,y) {
+      		var color = colorOf(x,y)
+     		unmark(x,y)
+      		while (isMarked(x,y)==false) {
+      			if(y===21) {
+      				break;
+      			}
+      			
+      			
+      			y++;
+      			
+      	 	} 		
+      		
+      		mark(x,y-1,color)
+      }
+
+		function checker() {
+			for (var i=21; i>=0; i--) {
+			for (var j=21; j>=0; j--) {
+				
+				if(isMarked(j,i)==true) {
+					x = j;
+					y = i;
+
+
+					mover(x,y)
+
+				}
+
+		
+			
+		}
+	}
+}
+
+	checker();   
+	</script>
+
+</body></html>
